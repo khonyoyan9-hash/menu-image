@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slay Bar & Grill - Vertical Swipe Gallery</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url("https://i.postimg.cc/cCh0ybLL/Bg-For-web.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+header {
+    background: linear-gradient(45deg, rgb(225, 247, 244), rgba(229, 210, 35, 0.861), rgb(248, 235, 137));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    padding: 25px 15px;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* keeps logo + text centered */
+    gap: 12px; /* space between logo and text */
+    padding: 25px 15px;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+
+    background: linear-gradient(45deg, rgb(244, 215, 54), silver, rgb(254, 254, 110));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header .logo {
+    height: 128px;   /* adjust logo size */
+    width: auto;
+    border-radius: 10px; /* optional rounded corners */
+    box-shadow: 0 2px 6px rgba(255, 222, 36, 0.989); /* makes logo pop */
+}
+
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1400px;
+    margin: auto;
+    padding: 20px;
+}
+.gallery img {
+    width: 100%;
+    height: auto;
+    max-height: 550px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #FFFACD;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.8);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 30px rgba(0,0,0,1);
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1em;
+    color: #FFFACD;
+    background: rgba(0,0,0,0.9);
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.5);
+}
+#lightbox {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden;
+    background: rgba(0,0,0,0.95);
+}
+.lb-img {
+    position: absolute;
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 12px;
+    border: 3px solid #FFFACD;
+    box-shadow: 0 8px 25px rgba(255,250,205,0.5);
+    transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+    touch-action: none;
+    cursor: grab;
+}
+#prev, #next {
+    filter: blur(6px) brightness(0.5);
+    width: 60%;
+    max-height: 60%;
+    z-index: 0;
+}
+#prev { transform: translateY(-110%); }
+#next { transform: translateY(110%); }
+#current { z-index: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+    <!--header>
+        <img class="logo" src="https://i.postimg.cc/c1MmF4Vm/photo-2025-08-17-16-12-01.jpg" alt="Slay Bar & Grill Logo">
+        <span>Slay Bar & Grill</span>
+      </header-->
+      <header style="display: flex; align-items: center; gap: 10px; white-space: nowrap;">
+        <img src="https://i.postimg.cc/G2NHQYb2/photo-2025-08-17-15-54-34.png" 
+             alt="Slay Bar & Grill Logo" 
+             style="height: 100px; width: auto;">
+        SLAY BAR & GRILL
+      </header>
+      
+<main>
+<div class="gallery">
+    <img src="https://i.postimg.cc/dtMhJwZS/photo1-jpg.jpg" alt="Photo 1">
+    <img src="https://i.postimg.cc/L43c8VJK/photo2-jpg.jpg" alt="Photo 2">
+    <img src="https://i.postimg.cc/8Pnn7XD3/photo3-jpg.jpg" alt="Photo 3">
+    <img src="https://i.postimg.cc/ydPLsvvL/photo4-jpg.jpg" alt="Photo 4">
+    <img src="https://i.postimg.cc/VkC4dYKr/photo5-jpg.jpg" alt="Photo 5">
+    <img src="https://i.postimg.cc/PrLQRXs3/photo6-jpg.jpg" alt="Photo 6">
+    <img src="https://i.postimg.cc/nzcvYZG1/photo7-jpg.jpg" alt="Photo 7">
+    <img src="https://i.postimg.cc/K8PL649N/photo8-jpg.jpg" alt="Photo 8">
+    <img src="https://i.postimg.cc/Hxh7wMxp/photo9-jpg.jpg" alt="Photo 9">
+    <img src="https://i.postimg.cc/t4NkhrHp/photo10-jpg.jpg" alt="Photo 10">
+    <img src=" https://i.postimg.cc/8cWQhbfH/photo11.jpg" alt=" Photo 11">
+    <img src="https://i.postimg.cc/8P9fkkTg/photo12.jpg" alt = "Photo 12">
+    <img src="https://i.postimg.cc/5NhjdPmx/photo-13.jpg" alt="Photo 13">
+    <img src="https://i.postimg.cc/cLWgt9tF/photo14.jpg" alt="Photo 14">
+    <img src="https://i.postimg.cc/gJxnb112/photo15.jpg" alt="Photo 15">
+    <img src="https://i.postimg.cc/Y2mhnK1X/photo16.jpg" alt="Photo 16">
+</div>
+</main>
+
+<footer>📲 Scan the QR code to view this menu anywhere</footer>
+
+<div id="lightbox">
+    <img class="lb-img" id="prev" src="" alt="Previous Photo">
+    <img class="lb-img" id="current" src="" alt="Current Photo">
+    <img class="lb-img" id="next" src="" alt="Next Photo">
+</div>
+
+<script>
+    const images = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const currentImg = document.getElementById('current');
+    const prevImg = document.getElementById('prev');
+    const nextImg = document.getElementById('next');
+    
+    let currentIndex = 0;
+    let startY = 0, startX = 0, isDragging = false, deltaY = 0;
+    let scale = 1, startDistance = 0;
+    let isPanning = false, panX = 0, panY = 0, lastX = 0, lastY = 0;
+    let isAnimating = false;
+    
+    // ---------------- UPDATE / RESET ----------------
+    function updateLightbox(){
+        currentImg.src = images[currentIndex].src;
+        const prevIndex = (currentIndex - 1 + images.length) % images.length;
+        const nextIndex = (currentIndex + 1) % images.length;
+        prevImg.src = images[prevIndex].src;
+        nextImg.src = images[nextIndex].src;
+        prevImg.style.transform = 'translateY(-110%)';
+        nextImg.style.transform = 'translateY(110%)';
+        resetTransform();
+    }
+    function resetTransform(){
+        scale = 1;
+        panX = panY = 0;
+        applyTransform();
+    }
+    function applyTransform(){
+        currentImg.style.transform = `translate(${panX}px, ${panY + deltaY}px) scale(${scale})`;
+    }
+    
+    // ---------------- OPEN / CLOSE ----------------
+    function openLightbox(index){
+        currentIndex = index;
+        updateLightbox();
+        lightbox.style.display = 'flex';
+    }
+    function closeLightbox(){ lightbox.style.display = 'none'; }
+    
+    // ---------------- NEXT / PREV ----------------
+    function showNext(){
+        if(isAnimating) return;
+        isAnimating = true;
+        currentIndex = (currentIndex + 1) % images.length;
+        animateSlide(-100);
+    }
+    function showPrev(){
+        if(isAnimating) return;
+        isAnimating = true;
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        animateSlide(100);
+    }
+    function animateSlide(offset){
+        currentImg.style.transition='transform 0.15s ease';
+        currentImg.style.transform = `translateY(${offset}%) scale(${scale})`;
+        setTimeout(()=> {
+            updateLightbox();
+            currentImg.style.transition='none';
+            currentImg.style.transform = `translateY(${-offset}%) scale(${scale})`;
+            requestAnimationFrame(()=> {
+                currentImg.style.transition='transform 0.3s ease';
+                currentImg.style.transform=`translateY(0) scale(${scale})`;
+            });
+            setTimeout(()=> isAnimating = false, 300);
+        }, 150);
+    }
+    
+    // ---------------- EVENTS ----------------
+    images.forEach((img,i)=> img.addEventListener('click', ()=> openLightbox(i)));
+    lightbox.addEventListener('click', e => { if(e.target !== currentImg) closeLightbox(); });
+    
+    // ---------------- SWIPE UP/DOWN ----------------
+    function handleStart(y){ startY = y; isDragging = true; deltaY = 0; currentImg.style.transition='none'; }
+    function handleMove(y){ if(!isDragging) return; deltaY = y - startY; applyTransform(); }
+    function handleEnd(){
+        if(!isDragging) return;
+        isDragging = false;
+        currentImg.style.transition='transform 0.3s ease';
+        const threshold = window.innerHeight / 4;
+        if(deltaY < -threshold){ showNext(); }
+        else if(deltaY > threshold){ showPrev(); }
+        else { deltaY = 0; applyTransform(); }
+    }
+    
+    // ---------------- DOUBLE CLICK / DOUBLE TAP ----------------
+    let lastTap = 0;
+    currentImg.addEventListener('click', e => {
+        const now = Date.now();
+        if(now - lastTap < 300){ // double click/tap
+            if(scale === 1){ scale = 2; } 
+            else { resetTransform(); }
+            applyTransform();
+        }
+        lastTap = now;
+    });
+    
+    // ---------------- DRAG / PAN WHEN ZOOMED ----------------
+    function startPan(x, y){
+        if(scale > 1){
+            isPanning = true;
+            lastX = x - panX;
+            lastY = y - panY;
+            currentImg.style.cursor = "grabbing";
+        }
+    }
+    function movePan(x, y){
+        if(isPanning){
+            panX = x - lastX;
+            panY = y - lastY;
+            applyTransform();
+        }
+    }
+    function endPan(){ isPanning = false; currentImg.style.cursor = "grab"; }
+    
+    // ---------------- MOUSE ----------------
+    currentImg.addEventListener('mousedown', e => {
+        if(scale > 1) startPan(e.clientX, e.clientY);
+        else handleStart(e.clientY);
+    });
+    window.addEventListener('mousemove', e => {
+        if(isPanning) movePan(e.clientX, e.clientY);
+        else if(isDragging) handleMove(e.clientY);
+    });
+    window.addEventListener('mouseup', ()=>{ if(isPanning) endPan(); else handleEnd(); });
+    
+    // ---------------- TOUCH ----------------
+    currentImg.addEventListener('touchstart', e => {
+        if(e.touches.length === 2){ 
+            startDistance = getDistance(e.touches); 
+        } else if(e.touches.length === 1){
+            if(scale > 1) startPan(e.touches[0].clientX, e.touches[0].clientY);
+            else handleStart(e.touches[0].clientY);
+        }
+    });
+    currentImg.addEventListener('touchmove', e => {
+        if(e.touches.length === 2){
+            const newDist = getDistance(e.touches);
+            let newScale = (newDist / startDistance) * scale;
+            newScale = Math.min(Math.max(1, newScale), 3);
+            scale = newScale;
+            applyTransform();
+        } else if(e.touches.length === 1){
+            if(isPanning){ movePan(e.touches[0].clientX, e.touches[0].clientY); }
+            else if(isDragging){ handleMove(e.touches[0].clientY); }
+        }
+        if(e.touches.length > 0) e.preventDefault();
+    });
+    currentImg.addEventListener('touchend', e => {
+        if(isPanning) endPan();
+        else handleEnd();
+    });
+    
+    // ---------------- HELPERS ----------------
+    function getDistance(touches){
+        const [t1,t2] = touches;
+        const dx = t2.clientX - t1.clientX;
+        const dy = t2.clientY - t1.clientY;
+        return Math.sqrt(dx*dx + dy*dy);
+    }
+    </script>
+    
+    
+    
+</body>
+</html>
+
+
